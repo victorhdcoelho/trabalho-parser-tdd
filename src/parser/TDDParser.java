@@ -1,18 +1,21 @@
 package parser;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TDDParser {
 	private char separator;
 	private String target_file;
+	private char position;
 	private List<String> content_file = new ArrayList<String>();
 	
-	public TDDParser(char separator, String target_file)
+	public TDDParser(char separator, String target_file, char position)
 	{
 		this.separator = separator;
 		this.target_file = target_file;
+		this.position = position;
 	}
 	
 	public char getSeparator()
@@ -45,6 +48,25 @@ public class TDDParser {
 	}
 
 	public String getContent() {
-		return "1;123;123;123";// Falsificação
+		String result = new String("");
+		int count = 1;
+		for(int i=0; i < this.content_file.size(); i++)
+		{
+			if(this.content_file.get(i).contains("-----") && i !=0) 
+			{
+				result = result.concat("\n");
+			}
+			if(this.content_file.get(i).contains("-----"))
+			{
+				String evolution = NumberFormat.getInstance().format(count) + this.separator; 
+				result = result.concat(evolution);
+				count++;
+			}
+			else 
+			{
+				result = result.concat(this.content_file.get(i) + this.separator);
+			}
+		}
+		return result;
 	}
 }
