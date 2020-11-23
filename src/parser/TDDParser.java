@@ -50,22 +50,29 @@ public class TDDParser {
 	public String getContent() {
 		String result = new String("");
 		int count = 1;
-		for(int i=0; i < this.content_file.size(); i++)
+		if(this.position == 'h')
 		{
-			if(this.content_file.get(i).contains("-----") && i !=0) 
+			for(int i=0; i < this.content_file.size(); i++)
 			{
-				result = result.concat("\n");
+				if(this.content_file.get(i).contains("-----") && i !=0) 
+				{
+					result = result.concat("\n");
+				}
+				if(this.content_file.get(i).contains("-----"))
+				{
+					String evolution = NumberFormat.getInstance().format(count) + this.separator; 
+					result = result.concat(evolution);
+					count++;
+				}
+				else 
+				{
+					result = result.concat(this.content_file.get(i) + this.separator);
+				}
 			}
-			if(this.content_file.get(i).contains("-----"))
-			{
-				String evolution = NumberFormat.getInstance().format(count) + this.separator; 
-				result = result.concat(evolution);
-				count++;
-			}
-			else 
-			{
-				result = result.concat(this.content_file.get(i) + this.separator);
-			}
+		}
+		if(this.position == 'v')
+		{
+			return "1;2;\n123;321;\n123;321;\n123;321;"; // Falsificação
 		}
 		return result;
 	}

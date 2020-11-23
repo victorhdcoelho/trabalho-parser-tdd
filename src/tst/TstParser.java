@@ -52,6 +52,7 @@ class TstParser {
 		assertEquals("src/parser/non_file.out", parser.getTargetFile());
 		assertEquals(false, parser.getFileContent());
 	}
+	
 	// Triangulação
 	@Test
 	void testParserContent01()
@@ -78,5 +79,13 @@ class TstParser {
 		TDDParser parser = new TDDParser(';', "src/parser/example3.out", 'h');
 		assertEquals(true, parser.getFileContent());
 		assertEquals(result, parser.getContent());
+	}
+	
+	@Test
+	void testParserContentVertical01()
+	{
+		TDDParser parser = new TDDParser(';', "src/parser/example1.out", 'v');
+		assertEquals(true, parser.getFileContent());
+		assertEquals("1;2;\n123;321;\n123;321;\n123;321;", parser.getContent());
 	}
 }
