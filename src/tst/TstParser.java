@@ -28,12 +28,28 @@ class TstParser {
 		assertEquals('\n', parser.getSeparator());
 	}
 	
+	// Triangulação
 	@Test
-	void testOpenFile()
+	void testOpenFile01()
 	{
-		TDDParser parser = new TDDParser(';', "../parser/analysisTime.out");
-		assertEquals("../parser/analysisTime.out", parser.getTargetFile());
+		TDDParser parser = new TDDParser(';', "src/parser/analysisTime.out");
+		assertEquals("src/parser/analysisTime.out", parser.getTargetFile());
 		assertEquals(true, parser.getFileContent());
 	}
 
+	@Test
+	void testOpenFile02()
+	{
+		TDDParser parser = new TDDParser(';', "src/parser/totalTime.out");
+		assertEquals("src/parser/totalTime.out", parser.getTargetFile());
+		assertEquals(true, parser.getFileContent());
+	}
+	
+	@Test
+	void testOpenFile03()
+	{
+		TDDParser parser = new TDDParser(';', "src/parser/non_file.out");
+		assertEquals("src/parser/non_file.out", parser.getTargetFile());
+		assertEquals(false, parser.getFileContent());
+	}
 }
