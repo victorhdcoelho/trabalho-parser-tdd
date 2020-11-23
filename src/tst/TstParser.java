@@ -12,20 +12,28 @@ class TstParser {
 	
 	@Test
 	void testParser01() {
-		TDDParser parser = new TDDParser(';');
+		TDDParser parser = new TDDParser(';', null);
 		assertEquals(';', parser.getSeparator());
 	}
 	
 	@Test
 	void testParser02() {
-		TDDParser parser = new TDDParser(',');
+		TDDParser parser = new TDDParser(',', null);
 		assertEquals(',', parser.getSeparator());
 	}
 	
 	@Test
 	void testParser03() {
-		TDDParser parser = new TDDParser('\n');
+		TDDParser parser = new TDDParser('\n', null);
 		assertEquals('\n', parser.getSeparator());
+	}
+	
+	@Test
+	void testOpenFile()
+	{
+		TDDParser parser = new TDDParser(';', "../parser/analysisTime.out");
+		assertEquals("../parser/analysisTime.out", parser.getTargetFile());
+		assertEquals(true, parser.getFileContent());
 	}
 
 }
