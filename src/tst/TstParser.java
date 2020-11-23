@@ -55,7 +55,7 @@ class TstParser {
 	
 	// Triangulação
 	@Test
-	void testParserContent01()
+	void testParserContentHorizontal01()
 	{
 		String result = "1;439;705;\n2;470;828;760;";
 		TDDParser parser = new TDDParser(';', "src/parser/example1.out", 'h');
@@ -64,7 +64,7 @@ class TstParser {
 	}
 	
 	@Test
-	void testParserContent02()
+	void testParserContentHorizontal02()
 	{
 		String result = "1;439;705;444;\n2;470;828;";
 		TDDParser parser = new TDDParser(';', "src/parser/example2.out", 'h');
@@ -73,7 +73,7 @@ class TstParser {
 	}
 	
 	@Test
-	void testParserContent03()
+	void testParserContentHorizontal03()
 	{
 		String result = "1;439;705;444;\n2;470;828;111;";
 		TDDParser parser = new TDDParser(';', "src/parser/example3.out", 'h');
@@ -81,11 +81,31 @@ class TstParser {
 		assertEquals(result, parser.getContent());
 	}
 	
+	// Triangulação
 	@Test
 	void testParserContentVertical01()
-	{
+	{	
+		String result = "1;2;\n439;470;\n705;828;\n;760;";
 		TDDParser parser = new TDDParser(';', "src/parser/example1.out", 'v');
 		assertEquals(true, parser.getFileContent());
-		assertEquals("1;2;\n123;321;\n123;321;\n123;321;", parser.getContent());
+		assertEquals(result, parser.getContent());
+	}
+	
+	@Test
+	void testParserContentVertical02()
+	{	
+		String result = "1\t2\t\n439\t470\t\n705\t828\t\n444\t\t";
+		TDDParser parser = new TDDParser('\t', "src/parser/example2.out", 'v');
+		assertEquals(true, parser.getFileContent());
+		assertEquals(result, parser.getContent());
+	}
+	
+	@Test
+	void testParserContentVertical03()
+	{	
+		String result = "1,2,\n439,470,\n705,828,\n444,111,";
+		TDDParser parser = new TDDParser(',', "src/parser/example3.out", 'v');
+		assertEquals(true, parser.getFileContent());
+		assertEquals(result, parser.getContent());
 	}
 }
