@@ -52,4 +52,12 @@ class TstParser {
 		assertEquals("src/parser/non_file.out", parser.getTargetFile());
 		assertEquals(false, parser.getFileContent());
 	}
+	
+	@Test
+	void testParserContent()
+	{
+		TDDParser parser = new TDDParser(';', "src/parser/analysisTime.out");
+		assertEquals(true, parser.getFileContent());
+		assertEquals("1;123;123;123", parser.getContent());
+	}
 }

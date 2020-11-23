@@ -43,4 +43,8 @@ public class TDDParser {
 			return false;
 		} 
 	}
+
+	public String getContent() {
+		return "1;123;123;123";// Falsificação
+	}
 }
