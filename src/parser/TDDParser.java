@@ -15,4 +15,9 @@ public class TDDParser {
 	{
 		return ';'; // Falsificação
 	}
+	
+	public char getSeparator2()
+	{
+		return ','; // duplicação
+	}
 }
