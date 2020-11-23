@@ -3,6 +3,8 @@ package tst;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import parser.TDDParser;
@@ -109,11 +111,34 @@ class TstParser {
 		assertEquals(result, parser.getContent());
 	}
 	
+	// Triangulação
 	@Test
-	void testSaveContentParsed()
+	void testSaveContentParsed01() throws IOException
 	{
+		String content_parsed = new String("");
 		TDDParser parser = new TDDParser(';', "src/parser/analysisTime.out", 'v');
 		assertEquals(true, parser.getFileContent());
-		assertEquals(true, parser.saveContentParsed("src/parser/result.out"));
+		content_parsed = parser.getContent();
+		assertEquals(true, parser.saveContentParsed("src/parser/result1.out", content_parsed));
+	}
+	
+	@Test
+	void testSaveContentParsed02() throws IOException
+	{
+		String content_parsed = new String("");
+		TDDParser parser = new TDDParser(';', "src/parser/totalTime.out", 'v');
+		assertEquals(true, parser.getFileContent());
+		content_parsed = parser.getContent();
+		assertEquals(true, parser.saveContentParsed("src/parser/result2.out", content_parsed));
+	}
+	
+	@Test
+	void testSaveContentParsed03() throws IOException
+	{
+		String content_parsed = new String("");
+		TDDParser parser = new TDDParser(';', "src/parser/example3.out", 'v');
+		assertEquals(true, parser.getFileContent());
+		content_parsed = parser.getContent();
+		assertEquals(true, parser.saveContentParsed("src/parser/result3.out", content_parsed));
 	}
 }

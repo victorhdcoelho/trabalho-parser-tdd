@@ -155,7 +155,17 @@ public class TDDParser {
 		return result.replaceAll(this.separator+"$", "");
 	}
 
-	public boolean saveContentParsed(String out_path) {
-		return true; // Falsificação
+	public boolean saveContentParsed(String out_path, String content_parsed) {
+		try
+		{
+			FileWriter writer = new FileWriter(out_path);
+			writer.write(content_parsed);
+			writer.close();
+			return true;
+		}
+		catch(IOException e)
+		{
+			return false;
+		}
 	}
 }
