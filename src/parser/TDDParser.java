@@ -135,7 +135,7 @@ public class TDDParser {
 			}
 			if(this.content_file.get(i).contains("-----"))
 			{
-				String evolution = NumberFormat.getInstance().format(count) + this.separator; 
+				String evolution = NumberFormat.getInstance().format(count) + this.separator;
 				result = result.concat(evolution);
 				count++;
 			}
@@ -148,8 +148,10 @@ public class TDDParser {
 		if(this.position == 'v')
 		{
 			String v_result = transform2Vertical(result);
-			return v_result;
+			v_result = v_result.replaceAll(this.separator + "\n", "\n");
+			return v_result.replaceAll(this.separator + "$", "");
 		}
-		return result;
+		result = result.replaceAll(this.separator + "\n", "\n");
+		return result.replaceAll(this.separator+"$", "");
 	}
 }
