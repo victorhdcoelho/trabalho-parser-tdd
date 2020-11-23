@@ -108,4 +108,12 @@ class TstParser {
 		assertEquals(true, parser.getFileContent());
 		assertEquals(result, parser.getContent());
 	}
+	
+	@Test
+	void testSaveContentParsed()
+	{
+		TDDParser parser = new TDDParser(';', "src/parser/analysisTime.out", 'v');
+		assertEquals(true, parser.getFileContent());
+		assertEquals(true, parser.saveContentParsed("src/parser/result.out"));
+	}
 }

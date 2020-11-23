@@ -154,4 +154,8 @@ public class TDDParser {
 		result = result.replaceAll(this.separator + "\n", "\n");
 		return result.replaceAll(this.separator+"$", "");
 	}
+
+	public boolean saveContentParsed(String out_path) {
+		return true; // Falsificação
+	}
 }
