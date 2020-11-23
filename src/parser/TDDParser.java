@@ -2,22 +2,13 @@ package parser;
 
 public class TDDParser {
 	private char separator;
-	private String target_file;
-	
-//	private TDDParser(char separator, String target_file)
-//	{
-//		this.separator = separator;
-//		this.target_file = target_file;
-//		
-//	}
+	public TDDParser(char separator)
+	{
+		this.separator = separator;
+	}
 	
 	public char getSeparator()
 	{
-		return ';'; // Falsificação
-	}
-	
-	public char getSeparator2()
-	{
-		return ','; // duplicação
+		return this.separator;
 	}
 }
