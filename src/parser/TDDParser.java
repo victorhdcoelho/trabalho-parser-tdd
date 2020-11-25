@@ -9,6 +9,8 @@ public class TDDParser {
 	private char separator;
 	private String target_file;
 	private char position;
+	private int evolution;
+	private List<Integer> analises = new ArrayList<Integer>();
 	private List<String> content_file = new ArrayList<String>();
 	
 	public TDDParser(char separator, String target_file, char position)
@@ -25,6 +27,16 @@ public class TDDParser {
 	public String getTargetFile()
 	{
 		return this.target_file;
+	}
+	
+	public int getEvolutions()
+	{
+		return this.evolution - 1;
+	}
+	
+	public List<Integer> getAnalises()
+	{
+		return this.analises;
 	}
 	
 	public boolean getFileContent()
@@ -127,11 +139,14 @@ public class TDDParser {
 	public String getContent() {
 		String result = new String("");
 		int count = 1;
+		int temp = 0;
 		for(int i=0; i < this.content_file.size(); i++)
 		{
 			if(this.content_file.get(i).contains("-----") && i !=0) 
 			{
 				result = result.concat("\n");
+				this.analises.add(temp);
+				temp = 0;
 			}
 			if(this.content_file.get(i).contains("-----"))
 			{
@@ -142,9 +157,11 @@ public class TDDParser {
 			else 
 			{
 				result = result.concat(this.content_file.get(i) + this.separator);
+				temp++;
 			}
 		}
-		
+		this.analises.add(temp);
+		this.evolution = count;
 		if(this.position == 'v')
 		{
 			String v_result = transform2Vertical(result);

@@ -1,6 +1,6 @@
 package parser;
 
-import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ParserMain {
@@ -36,6 +36,12 @@ public class ParserMain {
 				if(parser.saveContentParsed(output, content))
 				{
 					System.out.println("Parser success !!");
+					System.out.printf("Número de evoluções %d\n", parser.getEvolutions());
+					List<Integer> analises = parser.getAnalises();
+					for(int i=0; i < analises.size(); i ++)
+					{
+						System.out.printf("Evolução %d: %d analises\n", i+1, analises.get(i));
+					}
 				}
 				else
 				{
