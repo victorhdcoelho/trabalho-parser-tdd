@@ -7,17 +7,15 @@ import java.util.List;
 
 public class TDDParser {
 	private char separator;
-	private String target_file;
 	private char position;
 	private int evolution;
-	private List<Integer> analises = new ArrayList<Integer>();
-	private List<String> content_file = new ArrayList<String>();
-	
+	private TDDParserData content;
+
 	public TDDParser(char separator, String target_file, char position)
 	{
 		this.separator = separator;
-		this.target_file = target_file;
 		this.position = position;
+		this.content = new TDDParserData(target_file);
 	}
 	
 	public char getSeparator()
@@ -26,7 +24,7 @@ public class TDDParser {
 	}
 	public String getTargetFile()
 	{
-		return this.target_file;
+		return this.content.getTargetFile();
 	}
 	
 	public int getEvolutions()
@@ -36,27 +34,12 @@ public class TDDParser {
 	
 	public List<Integer> getAnalises()
 	{
-		return this.analises;
+		return this.content.analises;
 	}
 	
 	public boolean getFileContent()
 	{
-		try
-		{
-			BufferedReader reader = new BufferedReader(new FileReader(this.target_file));
-			String line;
-			while((line = reader.readLine()) != null)
-			{
-				this.content_file.add(line);
-			}
-			reader.close();
-			return true;
-			
-		}
-		catch(Exception e)
-		{
-			return false;
-		} 
+		return content.getFileContent(this);
 	}
 
 	private int getMaxOfList(List<List<String>> times)
@@ -147,15 +130,15 @@ public class TDDParser {
 		String result = new String("");
 		int count = 1;
 		int temp = 0;
-		for(int i=0; i < this.content_file.size(); i++)
+		for(int i=0; i < this.content.getContent().size(); i++)
 		{
-			if(this.content_file.get(i).contains("-----") && i !=0) 
+			if(this.content.getContent().get(i).contains("-----") && i !=0) 
 			{
 				result = result.concat("\n");
-				this.analises.add(temp);
+				this.content.analises.add(temp);
 				temp = 0;
 			}
-			if(this.content_file.get(i).contains("-----"))
+			if(this.content.getContent().get(i).contains("-----"))
 			{
 				String evolution = NumberFormat.getInstance().format(count) + this.separator;
 				result = result.concat(evolution);
@@ -163,11 +146,11 @@ public class TDDParser {
 			}
 			else 
 			{
-				result = result.concat(this.content_file.get(i) + this.separator);
+				result = result.concat(this.content.getContent().get(i) + this.separator);
 				temp++;
 			}
 		}
-		this.analises.add(temp);
+		this.content.analises.add(temp);
 		this.evolution = count;
 		if(this.position == 'v')
 		{
