@@ -128,6 +128,16 @@ public class TDDParser {
 	
 	public String getContent() {
 		String result = new String("");
+		result = getHorinzontalContentParsed(result);
+		if(this.position == 'v')
+		{
+			String v_result = transform2Vertical(result);
+			return clearNonWantChar(v_result);
+		}
+		return clearNonWantChar(result);
+	}
+
+	private String getHorinzontalContentParsed(String result) {
 		int count = 1;
 		int temp = 0;
 		for(int i=0; i < this.content.getContent().size(); i++)
@@ -152,25 +162,10 @@ public class TDDParser {
 		}
 		this.content.analises.add(temp);
 		this.evolution = count;
-		if(this.position == 'v')
-		{
-			String v_result = transform2Vertical(result);
-			return clearNonWantChar(v_result);
-		}
-		return clearNonWantChar(result);
+		return result;
 	}
 
 	public boolean saveContentParsed(String out_path, String content_parsed) {
-		try
-		{
-			FileWriter writer = new FileWriter(out_path);
-			writer.write(content_parsed);
-			writer.close();
-			return true;
-		}
-		catch(IOException e)
-		{
-			return false;
-		}
+		return this.content.saveContentParsed(out_path, content_parsed);
 	}
 }
