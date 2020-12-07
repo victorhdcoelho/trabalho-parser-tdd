@@ -136,6 +136,13 @@ public class TDDParser {
 		return result;
 	}
 	
+	public String clearNonWantChar(String content) 
+	{
+		content = content.replaceAll(this.separator + "\n", "\n");
+		content = content.replaceAll(this.separator+"$", "");
+		return content; 
+	}
+	
 	public String getContent() {
 		String result = new String("");
 		int count = 1;
@@ -165,11 +172,9 @@ public class TDDParser {
 		if(this.position == 'v')
 		{
 			String v_result = transform2Vertical(result);
-			v_result = v_result.replaceAll(this.separator + "\n", "\n");
-			return v_result.replaceAll(this.separator + "$", "");
+			return clearNonWantChar(v_result);
 		}
-		result = result.replaceAll(this.separator + "\n", "\n");
-		return result.replaceAll(this.separator+"$", "");
+		return clearNonWantChar(result);
 	}
 
 	public boolean saveContentParsed(String out_path, String content_parsed) {
