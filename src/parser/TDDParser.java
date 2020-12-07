@@ -9,13 +9,13 @@ public class TDDParser {
 	private char separator;
 	private char position;
 	private int evolution;
-	private TDDParserData content;
+	private Persistencia content;
 
 	public TDDParser(char separator, String target_file, char position)
 	{
 		this.separator = separator;
 		this.position = position;
-		this.content = new TDDParserData(target_file);
+		this.content = new Persistencia(target_file);
 	}
 	
 	public char getSeparator()

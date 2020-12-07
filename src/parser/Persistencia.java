@@ -5,12 +5,12 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TDDParserData {
+public class Persistencia {
 	public List<Integer> analises = new ArrayList<Integer>();
 	private List<String> content_file = new ArrayList<String>();
 	private String target_file;
 
-	public TDDParserData(String target_file) {
+	public Persistencia(String target_file) {
 		this.target_file = target_file;
 	}
 
@@ -39,6 +39,6 @@ public class TDDParserData {
 		catch(Exception e)
 		{
 			return false;
-		} 
+		}
 	}
 }
