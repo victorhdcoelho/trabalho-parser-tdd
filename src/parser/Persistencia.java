@@ -2,6 +2,8 @@ package parser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,20 @@ public class Persistencia {
 			
 		}
 		catch(Exception e)
+		{
+			return false;
+		}
+	}
+
+	public boolean saveContentParsed(String out_path, String content_parsed) {
+		try
+		{
+			FileWriter writer = new FileWriter(out_path);
+			writer.write(content_parsed);
+			writer.close();
+			return true;
+		}
+		catch(IOException e)
 		{
 			return false;
 		}
